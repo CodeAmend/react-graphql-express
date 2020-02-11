@@ -2,6 +2,9 @@ require('dotenv').config({ path: 'variables.env' });
 const mongoose = require('mongoose');
 const express = require('express');
 
+const Recipe = require('./models/Recipe');
+const User = require('./models/User');
+
 const { PORT, MONGO_URI } = process.env;
 
 const mongooseOptions = {
