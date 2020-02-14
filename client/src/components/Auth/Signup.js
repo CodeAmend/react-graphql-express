@@ -1,13 +1,16 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
+import Error from '../Error';
+
 import { SIGNUP_USERS } from '../../queries';
 
+const initialFormState = {
+  email: '', username: '', password: '', passwordConfirm: '',
+};
 
 const Signup = () => {
-  const [formData, setFormData] = React.useState({
-    email: '', username: '', password: '', passwordConfirm: '',
-  })
+  const [formData, setFormData] = React.useState(initialFormState)
 
   const [addUser, { loading, error, data }] = useMutation(SIGNUP_USERS, {
     email: "a@b.com", username: "hithere", password: "password",
@@ -25,14 +28,16 @@ const Signup = () => {
   }
 
   const handleSubmit = e => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
+    const { email, username, password } = formData;
+    addUser({ variables: { email, username, password }});
+    setFormData(initialFormState);
+  }
+
+  const validateForm = () => {
     const { email, username, password, passwordConfirmation } = formData;
-    if (password === passwordConfirmation) {
-      console.log("SAME PASS")
-      addUser({ variables: { email, username, password }});
-    } else {
-      console.log("NOT SAME PASS")
-    }
+    return !email || ! username || !password || password !== passwordConfirmation;
   }
 
   return (
@@ -69,10 +74,11 @@ const Signup = () => {
         />
         <button
           type="button"
+          disabled={loading || validateForm()}
           className="button-primary"
           onClick={handleSubmit}
         >Submit</button>
-        {error && <p>{error.message}</p>}
+        {error && <Error error={error} />}
       </form>
     </div>
   );
