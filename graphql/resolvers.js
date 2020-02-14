@@ -31,6 +31,7 @@ exports.resolvers = {
 
     signupUser: async (root, args, { models }, info) => {
       const { username, email, password } = args;
+      console.log({ args });
       const { User } = models;
 
       const user = await User.findOne({ username });

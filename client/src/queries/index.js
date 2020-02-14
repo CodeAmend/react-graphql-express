@@ -10,3 +10,11 @@ query AllRecipesQuery {
   }
 }
 `;
+
+export const SIGNUP_USERS = gql`
+mutation SingupUsers($username: String!, $password: String!, $email: String!) {
+  signupUser(username: $username, password: $password, email: $email) {
+    token
+  }
+}
+`;

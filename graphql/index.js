@@ -3,11 +3,11 @@ const { typeDefs } = require('./typeDefs');
 const { resolvers } = require('./resolvers');
 
 
-module.exports = ({ app, context }) => {
+module.exports = ({ app, ...rest }) => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context,
+    ...rest,
   });
 
   server.applyMiddleware({ app });
