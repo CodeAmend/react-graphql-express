@@ -16,10 +16,10 @@ const client = new ApolloClient({
   },
   request: operation => {
     const token = localStorage.getItem('token');
-    console.log({ token, operation });
+
     operation.setContext({
       headers: {
-        authentication: token,
+        authorization: token,
       },
     });
   },
