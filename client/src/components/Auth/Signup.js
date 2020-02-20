@@ -12,9 +12,7 @@ const initialFormState = {
 const Signup = () => {
   const [formData, setFormData] = React.useState(initialFormState)
 
-  const [addUser, { loading, error, data }] = useMutation(SIGNUP_USERS, {
-    email: "a@b.com", username: "hithere", password: "password",
-  });
+  const [addUser, { loading, error, data }] = useMutation(SIGNUP_USERS);
 
   React.useEffect(() => {
     console.log({ loading, error, data });
@@ -31,7 +29,7 @@ const Signup = () => {
     // e.stopPropagation();
     e.preventDefault();
     const { email, username, password } = formData;
-    addUser({ variables: { email, username, password }});
+    addUser({ variables: { email, username, password }}).catch(() => null);
     setFormData(initialFormState);
   }
 

@@ -11,6 +11,21 @@ import Signup from './components/Auth/Signup';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4444/graphql',
+  fetchOptions: {
+    credentials: 'include',
+  },
+  request: operation => {
+    const token = localStorage.getItem('token');
+    console.log({ token, operation });
+    operation.setContext({
+      headers: {
+        authentication: token,
+      },
+    });
+  },
+  onError: allErrors => {
+    console.log("SETUP ON_ERROR", allErrors);
+  },
 });
 
 const Root = () => (
@@ -23,7 +38,7 @@ const Root = () => (
       <Redirect to='/' />
     </Switch>
   </Router>
-)
+);
 
 ReactDOM.render(
   <ApolloProvider client={client}>

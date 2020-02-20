@@ -54,7 +54,7 @@ exports.resolvers = {
       const { username, password } = args;
       const { User } = models;
 
-      const user = User.find({ username });
+      const user = await User.findOne({ username });
 
       if (!user) {
         throw new Error("Not a valid username!");
@@ -70,5 +70,4 @@ exports.resolvers = {
       return { token };
     }
   },
-
 }

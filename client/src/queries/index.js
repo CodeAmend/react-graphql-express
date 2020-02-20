@@ -12,8 +12,16 @@ query AllRecipesQuery {
 `;
 
 export const SIGNUP_USERS = gql`
-mutation SingupUsers($username: String!, $password: String!, $email: String!) {
+mutation SignupUsers($username: String!, $password: String!, $email: String!) {
   signupUser(username: $username, password: $password, email: $email) {
+    token
+  }
+}
+`;
+
+export const SIGNIN_USER = gql`
+mutation SigninUser($username: String!, $password: String!) {
+  signinUser(username: $username, password: $password) {
     token
   }
 }
