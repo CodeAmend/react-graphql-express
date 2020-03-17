@@ -13,10 +13,10 @@ const Signin = () => {
   const [signinUser, { loading, error, data }] = useMutation(SIGNIN_USER);
 
   React.useEffect(() => {
-
     if (data) {
       const { signinUser: { token }} = data;
       localStorage.setItem('token', token);
+
     }
 
     if (error) {

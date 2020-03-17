@@ -14,15 +14,16 @@ const client = new ApolloClient({
   fetchOptions: {
     credentials: 'include',
   },
+
   request: operation => {
     const token = localStorage.getItem('token');
-
     operation.setContext({
       headers: {
         authorization: token,
       },
     });
   },
+
   onError: allErrors => {
     console.log("SETUP ON_ERROR", allErrors);
   },

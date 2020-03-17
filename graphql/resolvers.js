@@ -16,6 +16,21 @@ exports.resolvers = {
       const { Recipe } = models;
       const recipes = await Recipe.find();
       return recipes;
+    },
+
+    getCurrentUser: async (_, __, { models, currentUser }) => {
+      console.log(currentUser);
+
+      if (!currentUser) return null;
+
+      const { User } = models;
+      const user = User.findOne({ username: currentUser.username })
+        .populate({
+          path: 'favorites',
+          model: 'Recipe'
+        });
+
+      return user;
     }
   },
 
@@ -33,7 +48,6 @@ exports.resolvers = {
 
     signupUser: async (_, args, { models }) => {
       const { username, email, password } = args;
-      console.log({ args });
       const { User } = models;
 
       const user = await User.findOne({ username });
@@ -45,6 +59,8 @@ exports.resolvers = {
       await new User({ username, password, email }).save();
 
       const expiresIn = 1000 * 60 * 1;
+
+      console.log()
       const token = createToken({ username, password }, expiresIn);
 
       return { token };

@@ -32,16 +32,14 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function(next) {
-  console.log("PRE");
   if (!this.isModified('password')) {
     return next();
   }
 
-  console.log("GenSalt");
+
   bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
 
-    console.log("Hashing");
     bcrypt.hash(this.password, salt, (err, hash) => {
       if (err) return next(err);
       this.password = hash;

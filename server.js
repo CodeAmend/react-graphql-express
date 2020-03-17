@@ -9,26 +9,38 @@ const { resolvers } = require('./graphql/resolvers');
 const { PORT } = process.env;
 const app = express();
 
-const SECRET = process.env.SECRET;
-
 
 const gqlServer = new ApolloServer({
   typeDefs,
   resolvers,
-  context: { models }
+  context: ({ req }) => {
+    console.log(req.headers);
+    const { currentUser } = req;
+    return { models, currentUser };
+  },
 });
 
-
-app.use(async (req, _, next) => {
+app.use((req, _, next) => {
   const token = req.headers['authorization'];
-  if (token !== null {
-    jwt.verify(token, SECRET);
+  console.log("MIDDLE: ", req.headers)
+  let user = null;
+  if (token !== "null" && token) {
+    console.log("TOKEN IS: ", token)
+    try {
+      user = jwt.verify(token, process.env.SECRET);
+    } catch(err) {
+      console.error(err)
+    }
   }
+  req.currentUser = user;
   next();
 });
 
-gqlServer.applyMiddleware({ app });
-
+gqlServer.applyMiddleware({
+  app,
+  cors: true,
+  path: '/graphql',
+});
 
 app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);

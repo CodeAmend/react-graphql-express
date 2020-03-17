@@ -6,7 +6,7 @@ import Error from '../Error';
 import { SIGNUP_USERS } from '../../queries';
 
 const initialFormState = {
-  email: '', username: '', password: '', passwordConfirm: '',
+  email: '', username: '', password: '', passwordConfirmation: '',
 };
 
 const Signup = () => {

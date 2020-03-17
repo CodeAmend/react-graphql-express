@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Recipe = require('./models/Recipe');
 const User = require('./models/User');
 
-const { PORT, MONGO_URI } = process.env;
+const { MONGO_URI } = process.env;
 
 const mongooseOptions = {
   useNewUrlParser: true,
