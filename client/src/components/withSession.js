@@ -12,10 +12,11 @@ const withSesson = Component => props => {
     }
   }, [data, loading]);
 
-
   if (loading) return null;
 
-  if (data || error) return Component({ ...props, refetch });
+  if (data || error) return (
+    <Component {...props} session={data} refetch={refetch} />
+  );
 }
 
 export default withSesson;
