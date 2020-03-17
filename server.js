@@ -14,7 +14,6 @@ const gqlServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    console.log(req.headers);
     const { currentUser } = req;
     return { models, currentUser };
   },
@@ -22,10 +21,8 @@ const gqlServer = new ApolloServer({
 
 app.use((req, _, next) => {
   const token = req.headers['authorization'];
-  console.log("MIDDLE: ", req.headers)
   let user = null;
   if (token !== "null" && token) {
-    console.log("TOKEN IS: ", token)
     try {
       user = jwt.verify(token, process.env.SECRET);
     } catch(err) {

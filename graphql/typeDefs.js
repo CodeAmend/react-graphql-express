@@ -5,7 +5,7 @@ exports.typeDefs = gql`
   type Query {
     allRecipes: [Recipe]
 
-    getCurrentUser(username: String!): User
+    getCurrentUser: User
   }
 
   type Token {

@@ -19,8 +19,6 @@ exports.resolvers = {
     },
 
     getCurrentUser: async (_, __, { models, currentUser }) => {
-      console.log(currentUser);
-
       if (!currentUser) return null;
 
       const { User } = models;
@@ -60,7 +58,6 @@ exports.resolvers = {
 
       const expiresIn = 1000 * 60 * 1;
 
-      console.log()
       const token = createToken({ username, password }, expiresIn);
 
       return { token };

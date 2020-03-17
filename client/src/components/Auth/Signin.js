@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 
 import Error from '../Error';
 import { SIGNIN_USER } from '../../queries';
@@ -7,7 +8,8 @@ import { SIGNIN_USER } from '../../queries';
 const initialFormState = { username: '', password: '' };
 
 
-const Signin = () => {
+const Signin = ({ refetch }) => {
+  const { push } = useHistory();
   const [formData, setFormData] = React.useState(initialFormState)
 
   const [signinUser, { loading, error, data }] = useMutation(SIGNIN_USER);
@@ -16,7 +18,8 @@ const Signin = () => {
     if (data) {
       const { signinUser: { token }} = data;
       localStorage.setItem('token', token);
-
+      push('/');
+      refetch();
     }
 
     if (error) {
@@ -43,6 +46,7 @@ const Signin = () => {
     const { username, password } = formData;
     return  !username || !password;
   }
+
   return (
     <div className="App">
       <h2 className="App">Signin</h2>

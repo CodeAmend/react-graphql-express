@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
 import Error from '../Error';
@@ -9,14 +10,18 @@ const initialFormState = {
   email: '', username: '', password: '', passwordConfirmation: '',
 };
 
-const Signup = () => {
+const Signup = ({ refetch }) => {
+  const { push } = useHistory();
   const [formData, setFormData] = React.useState(initialFormState)
 
   const [addUser, { loading, error, data }] = useMutation(SIGNUP_USERS);
 
   React.useEffect(() => {
-    console.log({ loading, error, data });
-  }, [data, error, loading]);
+    if (data) {
+      console.log(refetch)
+      push('/');
+    }
+  }, [data]);
 
   const handleFormChange = ({ target: { name, value }})  => {
     setFormData(currentForm => ({
