@@ -10,12 +10,12 @@ query GetCurrentUser {
 }
 `;
 
-export const ALL_RECIPES = gql`
-query AllRecipesQuery {
-  allRecipes {
+export const GET_ALL_RECIPES = gql`
+query GetAllRecipesQuery {
+  getAllRecipes {
+    _id
     name
-    instructions
-    description
+    category
   }
 }
 `;

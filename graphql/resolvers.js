@@ -12,7 +12,7 @@ const createToken = (user, expiresIn) => {
 
 exports.resolvers = {
   Query: {
-    allRecipes: async (_, __, { models }) => {
+    getAllRecipes: async (_, __, { models }) => {
       const { Recipe } = models;
       const recipes = await Recipe.find();
       return recipes;
