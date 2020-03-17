@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import './index.css';
 import withSesson from './components/withSession';
 import App from './components/App';
+import Navbar from './components/Navbar';
+import Search from './components/Recipe/Search';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
 
@@ -32,12 +34,16 @@ const client = new ApolloClient({
 
 const Root = ({ refetch }) => (
 <Router>
-  <Switch>
-    <Route path="/" exact component={App} />
-    <Route path="/signin" render={() => <Signin refetch={refetch} />} />
-    <Route path="/signup" render={() => <Signup refetch={refetch} />} />
-    <Redirect to='/' />
-  </Switch>
+  <Fragment>
+    <Navbar />
+    <Switch>
+      <Route path="/" exact component={App} />
+      <Route path="/search" component={<Search />} />
+      <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+      <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+      <Redirect to='/' />
+    </Switch>
+  </Fragment>
 </Router>
 );
 
