@@ -9,6 +9,7 @@ import withSesson from './components/withSession';
 import App from './components/App';
 import Navbar from './components/Navbar';
 import Search from './components/Recipe/Search';
+import ViewRecipe from './components/Recipe/ViewRecipe';
 import AddRecipe from './components/Recipe/AddRecipe';
 import Profile from './components/Profile/Profile';
 import Signin from './components/Auth/Signin';
@@ -44,6 +45,7 @@ const Root = ({ refetch, session }) => (
       <Route path="/signup" render={() => <Signup refetch={refetch} />} />
       <Route path="/search" component={Search} />
       <Route path="/recipe/add" component={AddRecipe} />
+      <Route path="/recipe/:id" component={ViewRecipe} />
       <Route path="/profile" component={Profile} />
       <Redirect to='/' />
     </Switch>

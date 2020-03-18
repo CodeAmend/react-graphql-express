@@ -1,11 +1,16 @@
 import { gql } from 'apollo-boost';
 
-export const GET_CURRENT_USER = gql`
-query GetCurrentUser {
-  getCurrentUser {
+
+export const GET_RECIPE = gql`
+query GetRecipe($id: String!) {
+  getRecipe(id: $id) {
+    name
+    category
+    description
+    instructions
+    likes
+    createdDate
     username
-    joinDate
-    email
   }
 }
 `;
@@ -16,6 +21,16 @@ query GetAllRecipesQuery {
     _id
     name
     category
+  }
+}
+`;
+
+export const GET_CURRENT_USER = gql`
+query GetCurrentUser {
+  getCurrentUser {
+    username
+    joinDate
+    email
   }
 }
 `;

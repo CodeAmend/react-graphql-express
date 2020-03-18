@@ -12,6 +12,13 @@ const createToken = (user, expiresIn) => {
 
 exports.resolvers = {
   Query: {
+    getRecipe: async (_, args, { models }) => {
+      const { Recipe } = models;
+      const recipe = await Recipe.findOne({ _id: args.id });
+
+      if (!recipe) return null;
+      return recipe;
+    },
     getAllRecipes: async (_, __, { models }) => {
       const { Recipe } = models;
       const recipes = await Recipe.find();

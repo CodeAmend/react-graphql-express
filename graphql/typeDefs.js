@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 
 exports.typeDefs = gql`
   type Query {
+    getRecipe(id: String!): Recipe
     getAllRecipes: [Recipe]
 
     getCurrentUser: User

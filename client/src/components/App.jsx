@@ -13,15 +13,13 @@ function App() {
 
   if (error) return <div>Error</div>
 
-  const { getAllRecipes } = data;
+  const { getAllRecipes = [] } = data;
 
   return (
     <div className="App">
       <h1>Home</h1>
       <ul>
-        {getAllRecipes && getAllRecipes.map(recipe => (
-          <RecipeItem key={recipe.id} {...recipe} />
-        ))}
+        {getAllRecipes.map(RecipeItem)}
       </ul>
     </div>
   );
