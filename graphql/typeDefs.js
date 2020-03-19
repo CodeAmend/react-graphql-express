@@ -19,7 +19,7 @@ exports.typeDefs = gql`
       category: String!,
       description: String!,
       instructions: String!,
-      username: String,
+      username: String!,
     ): Recipe
 
     signupUser(username: String!, email: String!, password: String!): Token

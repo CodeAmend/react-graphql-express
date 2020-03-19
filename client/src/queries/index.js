@@ -1,6 +1,32 @@
 import { gql } from 'apollo-boost';
 
 
+export const ADD_RECIPE = gql`
+mutation AddRecipe(
+  $name: String!,
+  $category: String!,
+  $description: String!,
+  $instructions: String!
+  $username: String!
+) {
+  addRecipe(
+    name: $name,
+    category: $category,
+    description: $description,
+    instructions: $instructions,
+    username: $username
+  ) {
+    name
+    category
+    description
+    instructions
+    likes
+    createdDate
+    username
+  }
+}
+`;
+
 export const GET_RECIPE = gql`
 query GetRecipe($id: String!) {
   getRecipe(id: $id) {
