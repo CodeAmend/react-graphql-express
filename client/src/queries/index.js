@@ -1,6 +1,17 @@
 import { gql } from 'apollo-boost';
 
 
+export const SEARCH_RECIPE = gql`
+  query SearchRecipe($searchTerm: String!) {
+    searchRecipe(searchTerm: $searchTerm) {
+      _id
+      name
+      category
+      likes
+    }
+  }
+`;
+
 export const ADD_RECIPE = gql`
 mutation AddRecipe(
   $name: String!,

@@ -12,6 +12,36 @@ const createToken = (user, expiresIn) => {
 
 exports.resolvers = {
   Query: {
+    searchRecipe: async (_, { searchTerm }, { models }) => {
+      const { Recipe } = models;
+
+      // if (searchTerm) {
+      //   recipes = await Recipe.find({
+      //     $text: { $search: searchTerm }},
+      //     { score: { $meta: 'textScore' }}
+      //   ).sort({
+      //     score: { $meta: 'textScore' }
+      //   });
+      // } else {
+      //   recipes = await Recipe.find().sort({
+      //     likes: 'desc',
+      //     createdDate: 'desc',
+      //   });
+      // }
+      const searchResults = await Recipe.find(
+        {
+          $text: { $search: searchTerm }
+        },
+        {
+          score: { $meta: 'textScore' },
+        }
+      ).sort({
+        score: { $meta: 'textScore' }
+      });
+
+      console.log({ searchResults })
+      return searchResults;
+    },
     getRecipe: async (_, args, { models }) => {
       const { Recipe } = models;
       const recipe = await Recipe.findOne({ _id: args.id });
