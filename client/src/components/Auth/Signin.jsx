@@ -2,12 +2,15 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
-import Error from '../Common/Error';
-
 import { SIGNIN_USER } from '../../queries';
 
-const initialFormState = { username: '', password: '' };
+import Error from '../Common/Error';
 
+import { Wrapper } from '../Common/styles'
+import { Form } from './styles';
+
+
+const initialFormState = { username: '', password: '' };
 
 const Signin = ({ refetch }) => {
   const { push } = useHistory();
@@ -49,9 +52,9 @@ const Signin = ({ refetch }) => {
   }
 
   return (
-    <div className="App">
-      <h2 className="App">Signin</h2>
-      <form className="form">
+    <Wrapper>
+      <h2>Signin</h2>
+      <Form>
         <input
           type="text"
           name="username"
@@ -73,8 +76,8 @@ const Signin = ({ refetch }) => {
           onClick={handleSubmit}
         >Submit</button>
         {error && <Error error={error} />}
-      </form>
-    </div>
+      </Form>
+    </Wrapper>
   );
 }
 

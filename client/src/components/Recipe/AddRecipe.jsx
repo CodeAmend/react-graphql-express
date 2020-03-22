@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation } from 'react-apollo';
 
+import { Wrapper } from '../Common/styles';
 import { ADD_RECIPE } from '../../queries';
 
 
@@ -40,8 +41,8 @@ const AddRecipe = ({ history }) => {
   if (error) console.error(error);
 
   return (
-    <div className="App">
-      <h2 className="App">Add Recipe</h2>
+    <Wrapper>
+      <h2>Add Recipe</h2>
       <form className="form">
         <input
           name="name"
@@ -76,7 +77,7 @@ const AddRecipe = ({ history }) => {
         />
         <button onClick={handleSubmit} type="button">Submit</button>
       </form>
-    </div>
+    </Wrapper>
   );
 }
 

@@ -1,7 +1,22 @@
 import React from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
+import styled from 'styled-components';
+
 import { SEARCH_RECIPE } from '../../queries';
+
+import { Wrapper } from '../Common/styles';
 import RecipeItem from './RecipeItem';
+
+const SearchInput = styled.input`
+  font-size: 3rem;
+  transition: width 0.2s ease-in;
+  margin: 2em;
+  width: 10em;
+
+  &:focus {
+    width: 12em;
+  }
+`;
 
 
 const Search = () => {
@@ -17,10 +32,10 @@ const Search = () => {
   const { searchRecipe = [] } = data;
 
   return (
-    <div className="App">
+    <Wrapper>
       <h1>Search</h1>
 
-      <input
+      <SearchInput
         onChange={handleSearchChange}
         placeholder="Search for recipes"
         type="search"
@@ -31,7 +46,7 @@ const Search = () => {
           <RecipeItem key={recipe._id} {...recipe} />
         ))}
       </ul>
-    </div>
+    </Wrapper>
   );
 }
 

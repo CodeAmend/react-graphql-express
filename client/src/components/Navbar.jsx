@@ -2,6 +2,24 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import Signout from './Auth/Signout';
 
+import styled from 'styled-components';
+
+const Nav = styled.nav`
+  text-align: center;
+  padding-bottom: 0.2em;
+  padding-top: 2em;
+  background-color: #efefef;
+  box-shadow: -3px 3px 10px 0px rgba(168, 168, 168, 0.7);
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+`;
+
 
 const NavbarUnAuth = () => {
   return (
@@ -34,9 +52,9 @@ const NavbarAuth = ({ user }) => {
 
 const Navbar = ({ session: { getCurrentUser } }) => {
   return (
-    <nav>
+    <Nav>
       {getCurrentUser ? <NavbarAuth user={getCurrentUser} /> : <NavbarUnAuth />}
-    </nav>
+    </Nav>
   );
 };
 

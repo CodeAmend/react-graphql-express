@@ -2,9 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
+import { SIGNUP_USERS } from '../../queries';
+
+import { Wrapper } from '../Common/styles';
+import { Form } from './styles';
 import Error from '../Common/Error';
 
-import { SIGNUP_USERS } from '../../queries';
 
 const initialFormState = {
   email: '', username: '', password: '', passwordConfirmation: '',
@@ -44,9 +47,9 @@ const Signup = ({ refetch }) => {
   }
 
   return (
-    <div className="App">
-      <h2 className="App">Signup</h2>
-      <form className="form">
+    <Wrapper>
+      <h2>Signup</h2>
+      <Form>
         <input
           type="text"
           name="username"
@@ -82,8 +85,8 @@ const Signup = ({ refetch }) => {
           onClick={handleSubmit}
         >Submit</button>
         {error && <Error error={error} />}
-      </form>
-    </div>
+      </Form>
+    </Wrapper>
   );
 }
 

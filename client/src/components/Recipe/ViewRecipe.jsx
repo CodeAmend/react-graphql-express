@@ -24,7 +24,7 @@ const ViewRecipe = ({ match }) => {
   const { getRecipe } = data;
 
   return (
-    <div className="App">
+    <div>
       <h1>{getRecipe.name}</h1>
       <p>Author: {getRecipe.username}</p>
       <p>{getRecipe.createdDate}</p>
