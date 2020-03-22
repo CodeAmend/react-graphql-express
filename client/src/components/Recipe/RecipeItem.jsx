@@ -7,7 +7,6 @@ const RecipeItem = ({ _id, name, likes, category }) => (
     <NavLink to={`/recipe/${_id}`}>
       <h4>{name}</h4>
     </NavLink>
-
     <p>
       <strong>Category: </strong>
       {category}

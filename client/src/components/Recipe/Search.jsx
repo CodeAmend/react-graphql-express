@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCH_RECIPE } from '../../queries';
 import RecipeItem from './RecipeItem';

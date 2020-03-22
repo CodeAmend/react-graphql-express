@@ -19,7 +19,9 @@ function App() {
     <div className="App">
       <h1>Home</h1>
       <ul>
-        {getAllRecipes.map(RecipeItem)}
+        {getAllRecipes.map(recipe => (
+          <RecipeItem key={recipe._id} {...recipe} />)
+        )}
       </ul>
     </div>
   );
