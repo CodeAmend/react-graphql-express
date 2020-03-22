@@ -19,6 +19,7 @@ function App() {
   return (
     <Wrapper>
       <h1>Home</h1>
+      <RecipeHome />
       <ul>
         {getAllRecipes.map(recipe => (
           <RecipeItem key={recipe._id} {...recipe} />)

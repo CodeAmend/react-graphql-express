@@ -1,12 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Recipe } from './styles';
 
-const RecipeItem = ({ _id, name, likes, category }) => (
-  <li>
-    <NavLink to={`/recipe/${_id}`}>
-      <h4>{name}</h4>
-    </NavLink>
+
+const RecipeItemComponent = ({ _id, name, likes, category }) => (
+  <Recipe.Item>
+    <h4>
+      Name:
+      <NavLink to={`/recipe/${_id}`}>
+        {' ' + name}
+      </NavLink>
+    </h4>
     <p>
       <strong>Category: </strong>
       {category}
@@ -15,7 +20,7 @@ const RecipeItem = ({ _id, name, likes, category }) => (
       <strong>Likes: </strong>
       {likes}
     </p>
-  </li>
+  </Recipe.Item>
 );
 
-export default RecipeItem;
+export default RecipeItemComponent;
