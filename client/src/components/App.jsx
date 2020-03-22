@@ -11,8 +11,7 @@ import { GET_ALL_RECIPES } from '../queries'
 function App() {
   const { loading, error, data } = useQuery(GET_ALL_RECIPES);
 
-  if (loading) return <div className="App"><Loader /></div>
-  if (error) return <div className="App"><Error /></div>
+  if (loading) return <Loader />
   if (error) return <Error />
 
   const { getAllRecipes = [] } = data;
