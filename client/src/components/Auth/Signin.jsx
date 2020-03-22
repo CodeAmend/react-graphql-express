@@ -2,7 +2,8 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
-import Error from '../Error';
+import Error from '../Common/Error';
+
 import { SIGNIN_USER } from '../../queries';
 
 const initialFormState = { username: '', password: '' };

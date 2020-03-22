@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
-import Error from '../Error';
+import Error from '../Common/Error';
 
 import { SIGNUP_USERS } from '../../queries';
 

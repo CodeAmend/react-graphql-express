@@ -3,22 +3,25 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { GET_RECIPE } from '../../queries';
 
+import Loader from '../Common/Loader';
+import Error from '../Common/Error';
+
 
 const ViewRecipe = ({ match }) => {
   const { id } = match.params;
 
-  const getRecipeQuery = useQuery(GET_RECIPE, {
+  const { loading, error, data } = useQuery(GET_RECIPE, {
     variables: { id }
   });
 
-  if (getRecipeQuery.loading) return <div>Loading</div>;
-  if (getRecipeQuery.error) return <div>Error</div>;
+  if (loading) return <Loader />;
+  if (error) return <Error />;
 
   const handleLike = () => {
     console.log("HANDLE_LIKE");
   }
 
-  const { getRecipe } = getRecipeQuery.data;
+  const { getRecipe } = data;
 
   return (
     <div className="App">

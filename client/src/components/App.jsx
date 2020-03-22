@@ -2,6 +2,8 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import RecipeItem from './Recipe/RecipeItem';
+import Loader from './Common/Loader';
+import Error from './Common/Error';
 
 import { GET_ALL_RECIPES } from '../queries'
 
@@ -9,9 +11,9 @@ import { GET_ALL_RECIPES } from '../queries'
 function App() {
   const { loading, error, data } = useQuery(GET_ALL_RECIPES);
 
-  if (loading) return <div>Loading</div>
-
-  if (error) return <div>Error</div>
+  if (loading) return <div className="App"><Loader /></div>
+  if (error) return <div className="App"><Error /></div>
+  if (error) return <Error />
 
   const { getAllRecipes = [] } = data;
 
